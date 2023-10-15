@@ -4,12 +4,14 @@
     <DateList :isLight="isLight" />
     <h3>форма яка приймає лише числа</h3>
     <SearchForm class="form" :isLight="isLight" @setError="setError" @setNum="setNum"> </SearchForm>
-    <Text v-if="numberFromFormSubmit">Ви ввели число зі значенням: {{ numberFromFormSubmit }}</Text>
-    <Text class="error-text" v-if="errorMessage">Валідація повернула помилку: {{ errorMessage }}</Text>
+    <Text :class="{ 'night': !isLight }" v-if="numberFromFormSubmit">Ви ввели число зі значенням: {{ numberFromFormSubmit
+    }}</Text>
+    <Text :class="{ 'night': !isLight }" class="error-text" v-if="errorMessage">Валідація повернула помилку: {{
+      errorMessage }}</Text>
     <RandomList class="random-margin" :class="{ 'night-border': !isLight }" />
-    <CustomButton class="animation-btn" :class="{ 'animation-btn-active': isActive, 'night-btn': !isLight }"
+    <CustomButton class="animation-btn" :class="{ 'animation-btn-active': isActive, 'night': !isLight }"
       @click="() => { isActive = !isActive }"> при натисненні змінює розмір</CustomButton>
-    <button class="theme-btn" @click="toggleTheme" :class="{ 'night-btn': isLight }">Змінити тему</button>
+    <button class="theme-btn" @click="toggleTheme" :class="{ 'night': isLight }">Змінити тему</button>
     <Table :isLight="isLight"></Table>
     <ListsWithLastTasks :isLight="isLight" />
   </div>
@@ -56,7 +58,7 @@ export default {
 
 <style scoped>
 .error-text {
-  background-color: rgba(165, 42, 42, 0.4);
+  background-color: rgba(165, 42, 42, 0.4) !important;
 }
 
 .animation-btn {
@@ -82,7 +84,7 @@ export default {
   color: bisque;
 }
 
-.night-btn {
+.night {
   background-color: rgb(8, 56, 8);
   color: #ffffff;
   border: 1px solid #fff;
